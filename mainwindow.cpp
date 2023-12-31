@@ -135,3 +135,10 @@ void MainWindow::on_pushButton_clicked()
     this->close();
 }
 
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    dodawanie = new Dodawanie(this);
+    dodawanie->show();
+}
+

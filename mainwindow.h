@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "dodawanie.h"
 //serial port
 #include <QSerialPort>
 //sql
@@ -35,8 +36,11 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_pushButton_2_clicked();
+
 private:
     Ui::MainWindow *ui;
+    Dodawanie *dodawanie;
     QSerialPort* arduino;
     QSqlDatabase db;
 };
