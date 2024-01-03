@@ -4,12 +4,11 @@
 #include <QSerialPort>
 #include <QSerialPortInfo>
 #include <QDebug>
-
 //SQL
 #include <QSqlDatabase>
 #include <QSqlError>
 #include <QSqlQuery>
-//messageboxy
+//messagebox
 #include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -127,7 +126,46 @@ void MainWindow::on_comboBox_currentIndexChanged(int index)
 
 }
 
+void MainWindow::update(){
 
+    //serialport setup
+    arduino = new QSerialPort(this);
+    arduino->setPortName("COM7");
+    arduino->setBaudRate(QSerialPort::Baud9600);
+    if(arduino->open(QIODevice::ReadWrite)){
+        qDebug()<<"SERIAL PORT OPENED";
+    }
+    else
+    {
+        qDebug()<<"SERIAL PORT NOT OPENED";
+    }
+    connect(arduino,&QSerialPort::readyRead,this,[&](){
+        QByteArray responseData = arduino->readAll();
+        qDebug()<<"Rceived data: "<<responseData;
+        ui->label_wynik->setText(responseData);
+    });
+
+    //Otwarcie bazy danych
+    db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("C:/Users/Michał/Desktop/qt kurz/NawadnianieRoslin/bazadanych.db");
+    if(!db.open()){
+        qDebug()<<"Baza danych nie otwarta";
+    }
+    else{
+        qDebug()<<"Baza danych otwarta";
+    }
+    //Wyslanie zapytania i wypelnienie comboboxa nazwami
+    QSqlQuery query;
+    query.exec("SELECT nazwa FROM rosliny");
+    ui->comboBox->clear();
+    while(query.next()){
+        QString item = query.value(0).toString();
+        ui->comboBox->addItem(item);
+    }
+    query.finish();
+
+
+}
 
 
 void MainWindow::on_pushButton_clicked()
@@ -140,5 +178,13 @@ void MainWindow::on_pushButton_2_clicked()
 {
     dodawanie = new Dodawanie(this);
     dodawanie->show();
+
+
+}
+
+
+void MainWindow::on_pushButton_update_clicked()
+{
+    update();
 }
 

@@ -6,67 +6,86 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>900</width>
     <height>600</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>900</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>900</width>
+    <height>600</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QGroupBox" name="groupBox">
+   <widget class="QGroupBox" name="groupBox_selection">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>40</y>
-      <width>326</width>
-      <height>275</height>
+      <x>520</x>
+      <y>80</y>
+      <width>311</width>
+      <height>291</height>
      </rect>
     </property>
     <property name="title">
      <string>POMIAR</string>
     </property>
-    <widget class="QWidget" name="layoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>21</x>
-       <y>72</y>
-       <width>162</width>
-       <height>58</height>
-      </rect>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_2">
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_4">
-        <item>
-         <widget class="QPushButton" name="pushButton_wybierz">
-          <property name="text">
-           <string>Wybierz</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QComboBox" name="comboBox"/>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton_pomiar">
-        <property name="text">
-         <string>Pomiar</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <layout class="QVBoxLayout" name="verticalLayout_selection">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <item>
+          <widget class="QPushButton" name="pushButton_wybierz">
+           <property name="text">
+            <string>Wybierz</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="comboBox"/>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_update">
+         <property name="text">
+          <string>Odśwież</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_pomiar">
+         <property name="text">
+          <string>Pomiar</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
    </widget>
    <widget class="QLabel" name="label_obraz">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>90</y>
-      <width>251</width>
-      <height>171</height>
+      <x>50</x>
+      <y>60</y>
+      <width>400</width>
+      <height>300</height>
      </rect>
     </property>
     <property name="text">
@@ -79,13 +98,13 @@
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>121</x>
-      <y>390</y>
+      <x>20</x>
+      <y>480</y>
       <width>122</width>
       <height>24</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <layout class="QHBoxLayout" name="horizontalLayout_wynik">
      <item>
       <widget class="QLabel" name="label_wynik_tekst">
        <property name="font">
@@ -106,7 +125,7 @@
         </font>
        </property>
        <property name="text">
-        <string>TextLabel</string>
+        <string>-</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -118,13 +137,13 @@
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>51</x>
-      <y>30</y>
-      <width>110</width>
+      <x>50</x>
+      <y>10</y>
+      <width>291</width>
       <height>30</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_3">
+    <layout class="QHBoxLayout" name="horizontalLayout_nazwa">
      <item>
       <widget class="QLabel" name="label">
        <property name="font">
@@ -160,13 +179,13 @@
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>21</x>
-      <y>291</y>
+      <x>20</x>
+      <y>430</y>
       <width>262</width>
       <height>24</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout">
+    <layout class="QHBoxLayout" name="horizontalLayout_moist">
      <item>
       <widget class="QLabel" name="label_2">
        <property name="font">
@@ -182,7 +201,7 @@
      <item>
       <widget class="QLabel" name="label_goalMoistLevel">
        <property name="text">
-        <string>BRAK</string>
+        <string>-</string>
        </property>
       </widget>
      </item>
@@ -191,17 +210,24 @@
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>620</x>
-      <y>430</y>
-      <width>82</width>
-      <height>56</height>
+      <x>590</x>
+      <y>420</y>
+      <width>171</width>
+      <height>121</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
+    <layout class="QVBoxLayout" name="verticalLayoutaddexit">
      <item>
       <widget class="QPushButton" name="pushButton_2">
        <property name="text">
         <string>Dodaj</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_edit">
+       <property name="text">
+        <string>Edytuj</string>
        </property>
       </widget>
      </item>
@@ -220,7 +246,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>900</width>
      <height>21</height>
     </rect>
    </property>
