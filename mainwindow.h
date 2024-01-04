@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "dodawanie.h"
+#include "edit.h"
 //serial port
 #include <QSerialPort>
 //sql
@@ -41,9 +42,12 @@ private slots:
 
     void on_pushButton_update_clicked();
 
+    void on_pushButton_edit_clicked();
+
 private:
     Ui::MainWindow *ui;
     Dodawanie *dodawanie;
+    edit *edycja;
     QSerialPort* arduino;
     QSqlDatabase db;
 };

@@ -10,15 +10,18 @@ CONFIG += c++17
 
 SOURCES += \
     dodawanie.cpp \
+    edit.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     dodawanie.h \
+    edit.h \
     mainwindow.h
 
 FORMS += \
     dodawanie.ui \
+    edit.ui \
     mainwindow.ui
 
 # Default rules for deployment.

@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "edit.h"
 //serial port
 #include <QSerialPort>
 #include <QSerialPortInfo>
@@ -186,5 +187,35 @@ void MainWindow::on_pushButton_2_clicked()
 void MainWindow::on_pushButton_update_clicked()
 {
     update();
+}
+
+
+void MainWindow::on_pushButton_edit_clicked()
+{
+
+    //w konstrukorze edit jest podawane id do ktorego ma sie odnosic edycja
+    db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("C:/Users/Michał/Desktop/qt kurz/NawadnianieRoslin/bazadanych.db");
+    if(!db.open()){
+        qDebug()<<"Baza danych nie otwarta";
+    }
+    else{
+        qDebug()<<"Baza danych otwarta";
+    }
+    QString queryID = QString("SELECT id FROM rosliny WHERE nazwa = '%1'").arg(ui->comboBox->currentText());
+    QSqlQuery queryID2(queryID,db);
+    if(queryID2.exec() && queryID2.next())
+    {
+        int idValue = queryID2.value(0).toInt();
+        qDebug()<<"ID: "<<idValue;
+        edycja = new edit(QString::number(idValue),this);
+        edycja->show();
+    }
+    else
+    {
+        qDebug()<<"Error executing query: "<<queryID2.lastError().text();
+    }
+
+
 }
 
